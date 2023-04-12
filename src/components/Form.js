@@ -20,7 +20,6 @@ export default function Form({ handleSubmit, value, setValue }) {
           className="border p-2 text-blue-400 border-blue-400 rounded hover:text-white hover:bg-blue-200"
           type="submit"
           value="입력"
-          classname="btn"
           onClick={handleSubmit}
         />
       </form>
