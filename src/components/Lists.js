@@ -2,7 +2,7 @@ import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import List from "./List";
 
-export default function Lists({ todoData, setTodoData }) {
+const Lists = React.memo(({ todoData, setTodoData }) => {
   const handleEnd = (result) => {
     console.log(result);
     // 목적지가 없으면(이벤트 취소) 이 함수를 종료합니다.
@@ -47,4 +47,6 @@ export default function Lists({ todoData, setTodoData }) {
       </DragDropContext>
     </div>
   );
-}
+});
+
+export default Lists;
