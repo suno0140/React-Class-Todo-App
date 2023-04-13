@@ -8,6 +8,7 @@ const List = React.memo(
     const handleClick = (id) => {
       let newTodoData = todoData.filter((data) => data.id !== id);
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
     };
 
     const handleCompleChange = (id) => {
@@ -18,6 +19,8 @@ const List = React.memo(
         return data;
       });
       setTodoData(newTodoData);
+      console.log(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
     };
 
     const handleEditChange = (e) => {
@@ -32,6 +35,8 @@ const List = React.memo(
         return value;
       });
       setTodoData(newTodoData);
+      localStorage.setItem("todoData", JSON.stringify(newTodoData));
+
       setIsEditing(false);
     };
 
@@ -41,11 +46,9 @@ const List = React.memo(
           className={`bg-gray-100 flex items-center justify-between w-full px-4 py-3 my-2 text-gray-600 rounded`}
         >
           <div className="items-center">
-            {" "}
             <form onSubmit={handleSubmit}>
               <input
                 className="w-full px-3 py-2 mr-4 text-gray-500"
-                defaultChecked={false}
                 value={editedTitle}
                 autoFocus
                 onChange={handleEditChange}
@@ -85,8 +88,8 @@ const List = React.memo(
           <div className="items-center">
             <input
               type="checkbox"
-              defaultChecked={false}
-              onClick={() => handleCompleChange(data.id)}
+              defaultChecked={data.completed}
+              onChange={() => handleCompleChange(data.id)}
             />
             <span
               className={` 
@@ -105,7 +108,7 @@ const List = React.memo(
               }}
             >
               x
-            </button>{" "}
+            </button>
             <button
               className="px-4 py-2 float-right"
               onClick={() => {
